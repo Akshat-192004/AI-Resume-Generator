@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Cover Letter - AI Resume Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-envelope"></i> Cover Letter Generator</h1>
+            <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </header>
+        
+        <div class="form-wrapper">
+            <div class="form-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text">Create a compelling cover letter</p>
+            </div>
+            
+            <form id="coverLetterForm" class="form-container">
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Your Information</h3>
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Your Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="john.doe@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
+                            <small>Will appear as clickable "LinkedIn" link</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="github"><i class="fab fa-github"></i> GitHub</label>
+                            <input type="url" id="github" name="github" placeholder="https://github.com/yourusername">
+                            <small>Will appear as clickable "GitHub" link</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="portfolio"><i class="fas fa-globe"></i> Portfolio</label>
+                        <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                        <small>Will appear as clickable "Portfolio" link</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><i class="fas fa-building"></i> Job Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company"><i class="fas fa-building"></i> Company Name *</label>
+                            <input type="text" id="company" name="company" required placeholder="Google, Microsoft, Startup Inc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="position"><i class="fas fa-briefcase"></i> Job Position *</label>
+                            <input type="text" id="position" name="position" required placeholder="Software Engineer, Marketing Manager">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="job_description"><i class="fas fa-list-ul"></i> Job Description/Requirements</label>
+                        <textarea id="job_description" name="job_description" rows="5" placeholder="Paste the job description or list key requirements:
+
+• 3+ years of software development experience
+• Proficiency in Python, JavaScript, and React
+• Experience with cloud platforms (AWS, Azure)
+• Strong problem-solving and communication skills
+
+This helps create a more targeted cover letter."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><i class="fas fa-star"></i> Your Background</h3>
+                    <div class="form-group">
+                        <label for="experience"><i class="fas fa-history"></i> Relevant Experience *</label>
+                        <textarea id="experience" name="experience" rows="5" required placeholder="Describe your most relevant work experience and achievements:
+
+• 5 years as Software Engineer at TechCorp
+• Built and maintained 20+ web applications
+• Led a team of 4 developers on critical projects
+• Increased system performance by 50%
+• Expertise in Python, React, and AWS cloud services
+
+Focus on experiences that match the job requirements."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skills"><i class="fas fa-cogs"></i> Key Skills *</label>
+                        <textarea id="skills" name="skills" rows="3" required placeholder="List your most relevant skills for this position:
+
+Technical: Python, JavaScript, React, Node.js, AWS, Docker, SQL
+Soft Skills: Leadership, Team collaboration, Problem-solving, Communication"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest"><i class="fas fa-heart"></i> Why This Company/Role?</label>
+                        <textarea id="interest" name="interest" rows="4" placeholder="What specifically interests you about this company and position?
+
+Examples:
+• Excited about the company's mission to democratize AI
+• Impressed by their commitment to sustainable technology
+• Want to contribute to their innovative product development
+• Aligns with my passion for solving complex technical challenges
+
+Research the company beforehand for better results."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large" id="generateBtn">
+                        <i class="fas fa-magic"></i>
+                        <span class="btn-text">Generate Cover Letter</span>
+                        <span class="loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Generating...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="result" class="result-container" style="display: none;">
+            <div class="result-header">
+                <h3><i class="fas fa-check-circle"></i> Cover Letter Generated Successfully!</h3>
+                <p>Your personalized cover letter is ready for download with clickable social links.</p>
+            </div>
+            <div id="coverLetterContent" class="content-preview"></div>
+            <div class="result-actions">
+                <button id="downloadBtn" class="btn btn-success btn-large">
+                    <i class="fas fa-download"></i> Download Word Document
+                </button>
+                <button onclick="location.reload()" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> Generate Another
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

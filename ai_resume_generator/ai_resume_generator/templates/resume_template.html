@@ -1,0 +1,48 @@
+<!-- Resume Template for Future Customization -->
+<div class="resume-template">
+    <header class="resume-header">
+        <h1>{{ name }}</h1>
+        <div class="contact-info">
+            <span>{{ email }}</span> • 
+            <span>{{ phone }}</span> • 
+            <span>{{ location }}</span>
+        </div>
+        <div class="social-links">
+            {% if linkedin %}
+                <a href="{{ linkedin }}" class="social-link linkedin" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            {% endif %}
+            {% if github %}
+                <a href="{{ github }}" class="social-link github" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            {% endif %}
+            {% if portfolio %}
+                <a href="{{ portfolio }}" class="social-link portfolio" target="_blank">
+                    <i class="fas fa-globe"></i> Portfolio
+                </a>
+            {% endif %}
+        </div>
+    </header>
+    
+    <section class="resume-section">
+        <h2>Professional Summary</h2>
+        <p>{{ summary }}</p>
+    </section>
+    
+    <section class="resume-section">
+        <h2>Experience</h2>
+        {{ experience }}
+    </section>
+    
+    <section class="resume-section">
+        <h2>Skills</h2>
+        {{ skills }}
+    </section>
+    
+    <section class="resume-section">
+        <h2>Education</h2>
+        {{ education }}
+    </section>
+</div>

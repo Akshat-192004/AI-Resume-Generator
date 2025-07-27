@@ -1,0 +1,36 @@
+<!-- Cover Letter Template for Future Customization -->
+<div class="cover-letter-template">
+    <header class="letter-header">
+        <div class="applicant-info">
+            <h3>{{ name }}</h3>
+            <p>{{ email }} • {{ phone }}</p>
+            <div class="social-links">
+                {% if linkedin %}
+                    <a href="{{ linkedin }}" target="_blank">LinkedIn: {{ linkedin }}</a>
+                {% endif %}
+                {% if github %}
+                    <a href="{{ github }}" target="_blank">GitHub: {{ github }}</a>
+                {% endif %}
+                {% if portfolio %}
+                    <a href="{{ portfolio }}" target="_blank">Portfolio: {{ portfolio }}</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="date">{{ date }}</div>
+    </header>
+    
+    <div class="recipient-info">
+        <p>Hiring Manager</p>
+        <p>{{ company }}</p>
+    </div>
+    
+    <div class="subject">
+        <strong>Re: {{ position }} Position</strong>
+    </div>
+    
+    <div class="letter-body">
+        <p>Dear Hiring Manager,</p>
+        {{ content }}
+        <p>Best regards,<br>{{ name }}</p>
+    </div>
+</div>

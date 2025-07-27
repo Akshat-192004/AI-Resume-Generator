@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Resume - AI Resume Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-alt"></i> Resume Generator</h1>
+            <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </header>
+        
+        <div class="form-wrapper">
+            <div class="form-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>  
+                </div>
+                <p class="progress-text">Choose template and fill your information</p>
+            </div>
+            
+            <form id="resumeForm" class="form-container">
+                <!-- Template Selection -->
+                <div class="form-section template-section">
+                    <h3><i class="fas fa-palette"></i> Choose Resume Template</h3>
+                    <div class="template-grid">
+                        <div class="template-option active" data-template="modern">
+                            <div class="template-preview modern-preview">
+                                <div class="preview-header">
+                                    <div class="preview-name">John Doe</div>
+                                    <div class="preview-title">Software Engineer</div>
+                                </div>
+                                <div class="preview-line"></div>
+                                <div class="preview-content">
+                                    <div class="preview-section"></div>
+                                    <div class="preview-section"></div>
+                                    <div class="preview-section"></div>
+                                </div>
+                            </div>
+                            <label class="template-label">
+                                <input type="radio" name="template" value="modern" checked>
+                                <span>Modern Professional</span>
+                            </label>
+                        </div>
+                        
+                        <div class="template-option" data-template="classic">
+                            <div class="template-preview classic-preview">
+                                <div class="preview-header centered">
+                                    <div class="preview-name">John Doe</div>
+                                    <div class="preview-contact">email • phone • location</div>
+                                </div>
+                                <div class="preview-line classic-line"></div>
+                                <div class="preview-content">
+                                    <div class="preview-section"></div>
+                                    <div class="preview-section"></div>
+                                </div>
+                            </div>
+                            <label class="template-label">
+                                <input type="radio" name="template" value="classic">
+                                <span>Classic Traditional</span>
+                            </label>
+                        </div>
+                        
+                        <div class="template-option" data-template="creative">
+                            <div class="template-preview creative-preview">
+                                <div class="preview-sidebar">
+                                    <div class="preview-name-small">John</div>
+                                    <div class="preview-contact-small">Contact</div>
+                                    <div class="preview-links">Links</div>
+                                </div>
+                                <div class="preview-main">
+                                    <div class="preview-title">Software Engineer</div>
+                                    <div class="preview-content-main">
+                                        <div class="preview-section"></div>
+                                        <div class="preview-section"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="template-label">
+                                <input type="radio" name="template" value="creative">
+                                <span>Creative Modern</span>
+                            </label>
+                        </div>
+                        
+                        <div class="template-option" data-template="minimal">
+                            <div class="template-preview minimal-preview">
+                                <div class="preview-header left-align">
+                                    <div class="preview-name large">John Doe</div>
+                                    <div class="preview-title small">Software Engineer</div>
+                                    <div class="preview-contact">email • phone • location</div>
+                                </div>
+                                <div class="preview-line minimal-line"></div>
+                                <div class="preview-content">
+                                    <div class="preview-section"></div>
+                                    <div class="preview-section"></div>
+                                </div>
+                            </div>
+                            <label class="template-label">
+                                <input type="radio" name="template" value="minimal">
+                                <span>Minimal Clean</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="page-limit-section">
+                        <h4><i class="fas fa-file"></i> Resume Length</h4>
+                        <div class="page-options">
+                            <label class="page-option">
+                                <input type="radio" name="page_limit" value="1" checked>
+                                <span class="page-radio">
+                                    <i class="fas fa-file-alt"></i>
+                                    <strong>1 Page</strong>
+                                    <small>Concise & focused</small>
+                                </span>
+                            </label>
+                            <label class="page-option">
+                                <input type="radio" name="page_limit" value="2">
+                                <span class="page-radio">
+                                    <i class="fas fa-file-copy"></i>
+                                    <strong>2 Pages</strong>
+                                    <small>Detailed experience</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="john.doe@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+                        <input type="text" id="location" name="location" placeholder="City, State, Country">
+                    </div>
+                </div>
+
+                <!-- Professional Links -->
+                <div class="form-section">
+                    <h3><i class="fas fa-link"></i> Professional Links</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="linkedin"><i class="fab fa-linkedin"></i> LinkedIn Profile</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
+                            <small>Will appear as clickable "LinkedIn" link</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="github"><i class="fab fa-github"></i> GitHub Profile</label>
+                            <input type="url" id="github" name="github" placeholder="https://github.com/yourusername">
+                            <small>Will appear as clickable "GitHub" link</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="portfolio"><i class="fas fa-globe"></i> Portfolio Website</label>
+                        <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                        <small>Will appear as clickable "Portfolio" link</small>
+                    </div>
+                </div>
+
+                <!-- Professional Details -->
+                <div class="form-section">
+                    <h3><i class="fas fa-briefcase"></i> Professional Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="job_title"><i class="fas fa-bullseye"></i> Target Job Title *</label>
+                            <input type="text" id="job_title" name="job_title" required placeholder="e.g., Software Engineer, Marketing Manager">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience_years"><i class="fas fa-calendar-alt"></i> Years of Experience</label>
+                            <select id="experience_years" name="experience_years">
+                                <option value="">Select experience level</option>
+                                <option value="0-1">0-1 years (Entry Level)</option>
+                                <option value="2-5">2-5 years (Mid Level)</option>
+                                <option value="5-10">5-10 years (Senior Level)</option>
+                                <option value="10+">10+ years (Expert Level)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry"><i class="fas fa-industry"></i> Industry/Field</label>
+                        <input type="text" id="industry" name="industry" placeholder="e.g., Technology, Healthcare, Finance">
+                        <small>Your primary industry or field of work</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="professional_summary"><i class="fas fa-user-tie"></i> Professional Summary</label>
+                        <textarea id="professional_summary" name="professional_summary" rows="3" placeholder="Brief 2-3 sentence summary of your professional background and key strengths.
+
+Example: Results-driven software engineer with 5+ years developing scalable web applications. Proven track record of reducing system latency by 40% and leading cross-functional teams."></textarea>
+                        <small>This will appear at the top of your resume</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience"><i class="fas fa-history"></i> Work Experience *</label>
+                        <textarea id="experience" name="experience" rows="6" required placeholder="Describe your work experience including:
+• Job titles and companies with dates
+• Key responsibilities and achievements  
+• Quantifiable results (numbers, percentages, dollar amounts)
+• Technologies or tools used
+
+Example:
+Senior Software Engineer | TechCorp Inc. | 2020-2023
+- Developed 15+ scalable web applications using React and Node.js
+- Reduced page load times by 40% through performance optimization
+- Led team of 3 junior developers, improving team productivity by 25%"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skills"><i class="fas fa-cogs"></i> Skills *</label>
+                        <textarea id="skills" name="skills" rows="4" required placeholder="List your technical and soft skills:
+
+Technical Skills: Python, JavaScript, React, SQL, AWS, Docker
+Programming Languages: Java, C++, Python, JavaScript
+Frameworks: React, Node.js, Django, Flask
+Cloud & DevOps: AWS, Azure, Docker, Kubernetes
+Soft Skills: Leadership, Communication, Problem-solving"></textarea>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Education & Additional Information</h3>
+                    <div class="form-group">
+                        <label for="education"><i class="fas fa-university"></i> Education</label>
+                        <textarea id="education" name="education" rows="3" placeholder="Your educational background:
+
+Bachelor of Science in Computer Science
+University of Technology | 2020
+GPA: 3.8/4.0
+
+Relevant Coursework: Data Structures, Algorithms, Database Systems"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="certifications"><i class="fas fa-certificate"></i> Certifications</label>
+                            <textarea id="certifications" name="certifications" rows="3" placeholder="Professional certifications:
+
+• AWS Certified Solutions Architect – Associate
+• Google Cloud Professional Data Engineer  
+• PMP – Project Management Professional
+• Certified Kubernetes Administrator (CKA)"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="languages"><i class="fas fa-language"></i> Languages</label>
+                            <textarea id="languages" name="languages" rows="3" placeholder="Languages you speak:
+
+• English – Native/Fluent
+• Spanish – Intermediate 
+• French – Basic conversational
+• Mandarin – Beginner"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="career_goals"><i class="fas fa-bullseye"></i> Career Objectives</label>
+                        <textarea id="career_goals" name="career_goals" rows="3" placeholder="Your short-term and long-term career goals:
+
+• Advance to senior technical leadership role within 2-3 years
+• Lead innovative projects that impact millions of users
+• Mentor junior developers and build high-performing teams
+• Contribute to open-source projects in AI/ML space"></textarea>
+                        <small>Optional: Helps tailor the resume content to your aspirations</small>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large" id="generateBtn">
+                        <i class="fas fa-magic"></i>
+                        <span class="btn-text">Generate Resume</span>
+                        <span class="loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Generating...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="result" class="result-container" style="display: none;">
+            <div class="result-header">
+                <h3><i class="fas fa-check-circle"></i> Resume Generated Successfully!</h3>
+                <p>Your professional <span id="templateUsed">modern</span> resume is ready for download with <span id="pageCount">1</span> page layout.</p>
+            </div>
+            <div id="resumeContent" class="content-preview"></div>
+            <div class="result-actions">
+                <button id="downloadBtn" class="btn btn-success btn-large">
+                    <i class="fas fa-download"></i> Download Word Document
+                </button>
+                <button onclick="location.reload()" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> Generate Another
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
