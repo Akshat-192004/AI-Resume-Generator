@@ -45,5 +45,23 @@ python app.py
 ```
 Visit http://localhost:5000 in your browser.
 
+## Configuration
+Set environment variables in a .env file:
+```ini
+OLLAMA_URL=http://localhost:11434
+MODEL_NAME=llama2:7b
+MAX_TOKENS=1500
+DEBUG=True
+```
+
+Ensure ollama serve is running before using the app
+
+Use ollama pull llama2:7b if model is not installed
+
+Check system resources if performance is slow
+
+Ensure generated_documents/ is writable for downloads
+
+
 
 
